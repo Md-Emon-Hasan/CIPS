@@ -3,11 +3,15 @@ from flask import render_template
 from flask import request
 import pickle
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
-# Load the model
-pipe = pickle.load(open('model/pipe.pkl', 'rb'))
+# Get the absolute path to the 'pipe.pkl' file relative to the script's location
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Folder where this script is located
+file_path = os.path.join(BASE_DIR, 'model', 'pipe.pkl')
+# Load the pickle file using the absolute path
+pipe = pickle.load(open(file_path, 'rb'))
 
 # Define list of teams and cities
 teams = sorted([
