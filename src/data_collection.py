@@ -1,4 +1,3 @@
-# data_collection.py
 import pandas as pd
 import logging
 
