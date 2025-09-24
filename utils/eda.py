@@ -177,7 +177,7 @@ def check_null_values_heatmap(match_df):
 
 if __name__ == '__main__':
     from src.data_collection import load_data
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Folder where this script is located
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(BASE_DIR, 'data')
     deliveries_path = os.path.join(data_dir, 'deliveries.csv')
     matches_path = os.path.join(data_dir, 'matches.csv')

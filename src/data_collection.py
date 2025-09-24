@@ -31,7 +31,7 @@ def load_data(delivery_path, match_path):
     return delivery, match
 
 if __name__ == '__main__':
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Folder where this script is located
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(BASE_DIR, 'data')
     deliveries_path = os.path.join(data_dir, 'deliveries.csv')
     matches_path = os.path.join(data_dir, 'matches.csv')

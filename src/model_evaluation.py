@@ -1,13 +1,25 @@
 # model_evaluation.py
+import os
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error, median_absolute_error, max_error, explained_variance_score
-from sklearn.linear_model import LinearRegression, Ridge, Lasso, LogisticRegression
+from sklearn.metrics import r2_score
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import median_absolute_error
+from sklearn.metrics import max_error
+from sklearn.metrics import explained_variance_score
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Ridge
+from sklearn.linear_model import Lasso
+from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, AdaBoostRegressor, ExtraTreesRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import AdaBoostRegressor
+from sklearn.ensemble import ExtraTreesRegressor
 from xgboost import XGBRegressor
 import numpy as np
 import logging
@@ -107,7 +119,7 @@ if __name__ == '__main__':
     from preprocessing import split_data
     from data_collection import load_data
 
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Folder where this script is located
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
     data_dir = os.path.join(BASE_DIR, 'data')
     deliveries_path = os.path.join(data_dir, 'deliveries.csv')
     matches_path = os.path.join(data_dir, 'matches.csv')
@@ -115,7 +127,8 @@ if __name__ == '__main__':
     # Load data using the paths constructed dynamically
     delivery_data, match_data = load_data(deliveries_path, matches_path)
 
-    total_score_df = pd.read_csv('temp_total_score.csv') # Assuming you saved this during preprocessing
+    total_score_df = pd.read_csv('temp_total_score.csv')
+    
     match_runs_df = match_data.merge(total_score_df[['match_id', 'total_runs']], left_on='id', right_on="match_id")
     teams = [
         'Sunrisers Hyderabad', 'Mumbai Indians', 'Royal Challengers Bangalore', 'Kolkata Knight Riders', 'Kings XI Punjab',
@@ -124,7 +137,7 @@ if __name__ == '__main__':
     match_df = match_runs_df[match_runs_df['team1'].isin(teams) & match_runs_df['team2'].isin(teams)].copy()
     match_df['team1'] = match_df['team1'].str.replace('Deccan Chargers', 'Sunrisers Hyderabad').str.replace('Delhi Daredevils', 'Delhi Capitals')
     match_df['team2'] = match_df['team2'].str.replace('Deccan Chargers', 'Sunrisers Hyderabad').str.replace('Delhi Daredevils', 'Delhi Capitals')
-    final_df = pd.read_csv('temp_final_df.csv') # Assuming you saved this during preprocessing
+    final_df = pd.read_csv('temp_final_df.csv')
 
     X_train, X_test, y_train, y_test = split_data(final_df.drop(columns=['match_id']).copy())
 

@@ -337,7 +337,7 @@ def split_data(final_df, test_size=0.2, random_state=42):
 
 if __name__ == '__main__':
     from data_collection import load_data
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Folder where this script is located
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
     data_dir = os.path.join(BASE_DIR, 'data')
     deliveries_path = os.path.join(data_dir, 'deliveries.csv')
     matches_path = os.path.join(data_dir, 'matches.csv')

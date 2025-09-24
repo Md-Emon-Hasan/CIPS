@@ -7,8 +7,8 @@ import os
 
 app = Flask(__name__)
 
-# Get the absolute path to the 'pipe.pkl' file relative to the script's location
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Folder where this script is located
+# Get the absolute path to the 'pipe.pkl' file 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(BASE_DIR, 'model', 'pipe.pkl')
 # Load the pickle file using the absolute path
 pipe = pickle.load(open(file_path, 'rb'))
@@ -57,7 +57,7 @@ cities = sorted([
     'Bengaluru'
 ])
 
-# Define route for the home page
+# route for the home page
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
