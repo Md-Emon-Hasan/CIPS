@@ -21,6 +21,8 @@ dependencies = [
     "requests==2.32.5",
     "python-multipart==0.0.20",
     "pydantic-settings==2.10.1",
+    "ruff==0.1.11",
+    "mypy==1.8.0",
 ]
 
 [project.urls]
