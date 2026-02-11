@@ -1,7 +1,0 @@
-requests
-scikit-learn
-flask
-gunicorn
-pandas
-xgboost
-pytest

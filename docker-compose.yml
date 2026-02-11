@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./logs:/app/backend/logs
+      - ./backend/data/cips.db:/app/backend/data/cips.db
+    environment:
+      - DATABASE_URL=sqlite:////app/backend/data/cips.db
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend

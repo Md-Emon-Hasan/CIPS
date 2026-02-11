@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cips"
+version = "0.1.0"
+description = "Cricket IPL Prediction System"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    {name = "Md Emon Hasan", email = "iconicemon01@gmail.com"},
+]
+dependencies = [
+    "fastapi==0.115.8",
+    "uvicorn==0.34.0",
+    "sqlmodel==0.0.24",
+    "scikit-learn==1.6.1",
+    "pandas==2.2.3",
+    "xgboost==3.0.0",
+    "requests==2.32.5",
+    "python-multipart==0.0.20",
+    "pydantic-settings==2.10.1",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Md-Emon-Hasan/CIPS"
+"Bug Tracker" = "https://github.com/Md-Emon-Hasan/CIPS/issues"
+
+[tool.mypy]
+files = "app"
+ignore_missing_imports = true
+check_untyped_defs = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+include = ["app/**/*.py", "tests/**/*.py"]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = ["E501", "B008"]  # Line too long, handled by formatter; FastAPI Depends
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
+pythonpath = ["."]
+testpaths = ["tests"]
+
