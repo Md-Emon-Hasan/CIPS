@@ -16,6 +16,9 @@ setup(
         "requests==2.32.5",
         "python-multipart==0.0.20",
         "pydantic-settings==2.10.1",
+        "httpx==0.27.0",
+        "matplotlib==3.8.2",
+        "seaborn==0.13.2",
     ],
     url="https://github.com/Md-Emon-Hasan/CIPS",
     classifiers=[

@@ -9,7 +9,7 @@ Our goal:
 
 [![Project demo video](https://github.com/user-attachments/assets/f5a8305e-a504-4148-865d-e6ff3bf21784)](https://github.com/user-attachments/assets/f5a8305e-a504-4148-865d-e6ff3bf21784)
 
-![Project Screenshot]("https://github.com/user-attachments/assets/328b5109-61d2-4e6e-bc1e-25bd1e7e6a1e")
+![Project Screenshot](https://github.com/user-attachments/assets/328b5109-61d2-4e6e-bc1e-25bd1e7e6a1e)
 
 ---
 
