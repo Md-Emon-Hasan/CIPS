@@ -7,7 +7,9 @@ IPL Win Predictor is a machine learning application that predicts the probabilit
 Our goal:
 **To predict the final outcome and probability** based on current match context using regression models.
 
-![CIPS Banner](app.png)
+[![Project demo video](https://github.com/user-attachments/assets/f5a8305e-a504-4148-865d-e6ff3bf21784)](https://github.com/user-attachments/assets/f5a8305e-a504-4148-865d-e6ff3bf21784)
+
+![Project Screenshot]("https://github.com/user-attachments/assets/328b5109-61d2-4e6e-bc1e-25bd1e7e6a1e")
 
 ---
 
@@ -83,8 +85,8 @@ CIPS/
 │
 ├── docker-compose.yml            # Multi-container orchestration
 ├── .gitignore                    
-├── app.png                       # Project Picture
-├── app.mp4                       # Project Video
+├── demo.png                       # Project Picture
+├── demo.mp4                       # Project Video
 ├── LICENSE                       
 ├── README.md                     
 └── run.py                        # Main Execution Script
@@ -158,7 +160,6 @@ python run.py
 ```
 
 ### 2. Testing
-We maintain **100% Backend Test Coverage**. To run tests locally, you need to ensure the project root is in your `PYTHONPATH`.
 
 **Using PowerShell (Windows):**
 ```powershell
