@@ -46,7 +46,7 @@ jobs:
           ${{ runner.os }}-buildx-
 
     - name: Build Docker image
-      run: docker build -t cips .
+      run: docker build -t cips -f backend/Dockerfile .
 
     - name: Test the application (Run tests inside container)
       run: docker run --rm cips pytest backend/tests/

@@ -360,7 +360,7 @@ def test_evaluate_classification_model():
 
 
 @patch("backend.app.services.model_evaluation.pickle.dump")
-def test_train_and_evaluate_regressor(mock_dump):
+def test_train_and_evaluate_regressor(mock_dump, tmp_path):
     # Need multiple categories to ensure OneHotEncoder doesn't drop everything
     X_train = pd.DataFrame(
         {
@@ -374,15 +374,16 @@ def test_train_and_evaluate_regressor(mock_dump):
     y_test = y_train
     model = LinearRegression()
 
+    save_path = tmp_path / "dummy.pkl"
     pipe = train_and_evaluate(
-        "Linear", model, X_train, X_test, y_train, y_test, save_path="dummy.pkl"
+        "Linear", model, X_train, X_test, y_train, y_test, save_path=str(save_path)
     )
     mock_dump.assert_called_once()
     assert pipe is not None
 
 
 @patch("backend.app.services.model_evaluation.pickle.dump")
-def test_train_and_evaluate_classifier(mock_dump):
+def test_train_and_evaluate_classifier(mock_dump, tmp_path):
     X_train = pd.DataFrame(
         {"batting_team": ["A", "A"], "bowling_team": ["B", "B"], "city": ["C", "D"]}
     )
@@ -391,8 +392,9 @@ def test_train_and_evaluate_classifier(mock_dump):
     y_test = y_train
     model = LogisticRegression()
 
+    save_path = tmp_path / "dummy.pkl"
     train_and_evaluate(
-        "Logistic", model, X_train, X_test, y_train, y_test, save_path="dummy.pkl"
+        "Logistic", model, X_train, X_test, y_train, y_test, save_path=str(save_path)
     )
     mock_dump.assert_called_once()
 
@@ -413,7 +415,7 @@ def test_load_data_match_generic_fail():
 
 
 @patch("backend.app.services.model_evaluation.pickle.dump")
-def test_save_model_exception(mock_dump):
+def test_save_model_exception(mock_dump, tmp_path):
     mock_dump.side_effect = Exception("Save failed")
     X_train = pd.DataFrame(
         {"batting_team": ["A", "A"], "bowling_team": ["B", "B"], "city": ["C", "D"]}
@@ -425,8 +427,9 @@ def test_save_model_exception(mock_dump):
 
     # Should catch exception and log, not raise (based on code inspection lines 106-110 calls try...except logging)
     # The return pipe happens after.
+    save_path = tmp_path / "dummy.pkl"
     pipe = train_and_evaluate(
-        "Linear", model, X_train, X_test, y_train, y_test, save_path="dummy.pkl"
+        "Linear", model, X_train, X_test, y_train, y_test, save_path=str(save_path)
     )
     assert pipe is not None
 
