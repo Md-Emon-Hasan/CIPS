@@ -2,9 +2,9 @@
 import logging
 import os
 
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
+import matplotlib.pyplot as plt  # type: ignore
+import pandas as pd  # type: ignore
+import seaborn as sns  # type: ignore
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(module)s - %(message)s"
@@ -107,7 +107,13 @@ def analyze_toss_match_winner(match_df):
         logging.info("Analyzing if toss winner also won the match.")
         match_df["toss_match_winner"] = match_df["toss_winner"] == match_df["winner"]
         plt.figure(figsize=(6, 4))
-        sns.countplot(data=match_df, x="toss_match_winner", hue="toss_match_winner", palette="Set2", legend=False)
+        sns.countplot(
+            data=match_df,
+            x="toss_match_winner",
+            hue="toss_match_winner",
+            palette="Set2",
+            legend=False,
+        )
         plt.title("Did Toss Winner Also Win the Match?")
         plt.xlabel("Toss Winner == Match Winner")
         plt.ylabel("Match Count")
@@ -151,7 +157,14 @@ def analyze_top_player_of_the_match(match_df, top_n=10):
         ax.set_ylabel("Number of Awards")
         ax.set_xlabel("Name of Players")
         ax.set_title("Top player of the match Winners")
-        sns.barplot(x=top_players.index, y=top_players, hue=top_players.index, orient="v", palette="RdBu", legend=False)
+        sns.barplot(
+            x=top_players.index,
+            y=top_players,
+            hue=top_players.index,
+            orient="v",
+            palette="RdBu",
+            legend=False,
+        )
         plt.xticks(rotation="vertical")
         plt.tight_layout()
         plt.show()

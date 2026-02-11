@@ -2,8 +2,8 @@ import logging
 import os
 import random
 
-import matplotlib.pyplot as plt
-import seaborn as sns
+import matplotlib.pyplot as plt  # type: ignore
+import seaborn as sns  # type: ignore
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(module)s - %(message)s"
@@ -410,7 +410,7 @@ def split_data(final_df, test_size=0.2, random_state=42):
         logging.info(
             f"Splitting data into training and testing sets with test_size={test_size} and random_state={random_state}."
         )
-        from sklearn.model_selection import train_test_split
+        from sklearn.model_selection import train_test_split  # type: ignore
 
         X = final_df.drop(columns=["winner"])
         y = final_df["winner"]
@@ -427,7 +427,7 @@ def split_data(final_df, test_size=0.2, random_state=42):
 
 
 if __name__ == "__main__":  # pragma: no cover
-    from data_collection import load_data
+    from data_collection import load_data  # type: ignore
 
     # Go up two levels from backend/src to root
     BASE_DIR = os.path.dirname(

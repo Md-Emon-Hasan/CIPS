@@ -1,7 +1,7 @@
 import logging
 import pickle
 
-import pandas as pd
+import pandas as pd  # type: ignore
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session
 

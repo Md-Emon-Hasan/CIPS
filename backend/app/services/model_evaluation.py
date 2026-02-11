@@ -2,17 +2,22 @@ import logging
 import os
 import pickle
 
-import numpy as np
-import pandas as pd
-from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import (
+import numpy as np  # type: ignore
+import pandas as pd  # type: ignore
+from sklearn.compose import ColumnTransformer  # type: ignore
+from sklearn.ensemble import (  # type: ignore
     AdaBoostRegressor,
     ExtraTreesRegressor,
     GradientBoostingRegressor,
     RandomForestRegressor,
 )
-from sklearn.linear_model import Lasso, LinearRegression, LogisticRegression, Ridge
-from sklearn.metrics import (
+from sklearn.linear_model import (  # type: ignore
+    Lasso,
+    LinearRegression,
+    LogisticRegression,
+    Ridge,
+)
+from sklearn.metrics import (  # type: ignore
     accuracy_score,
     explained_variance_score,
     max_error,
@@ -21,11 +26,11 @@ from sklearn.metrics import (
     median_absolute_error,
     r2_score,
 )
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.tree import DecisionTreeRegressor
-from xgboost import XGBRegressor
+from sklearn.neighbors import KNeighborsRegressor  # type: ignore
+from sklearn.pipeline import Pipeline  # type: ignore
+from sklearn.preprocessing import OneHotEncoder  # type: ignore
+from sklearn.tree import DecisionTreeRegressor  # type: ignore
+from xgboost import XGBRegressor  # type: ignore
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(module)s - %(message)s"
@@ -130,8 +135,8 @@ def train_and_evaluate(
 
 
 if __name__ == "__main__":  # pragma: no cover
-    from data_collection import load_data
-    from preprocessing import split_data
+    from data_collection import load_data  # type: ignore
+    from preprocessing import split_data  # type: ignore
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(BASE_DIR, "data")

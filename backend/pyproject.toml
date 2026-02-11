@@ -33,6 +33,11 @@ dependencies = [
 files = "app"
 ignore_missing_imports = true
 check_untyped_defs = true
+disable_error_code = ["import-untyped"]
+
+[[tool.mypy.overrides]]
+module = ["pandas.*", "sklearn.*", "xgboost.*", "seaborn.*", "matplotlib.*"]
+ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 88
