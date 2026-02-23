@@ -4,45 +4,37 @@ import sys
 import time
 import threading
 
-
 def run_backend():
     print("Starting Backend (FastAPI)...")
-    # Run uvicorn from the root directory, pointing to backend.app.main:app
-    subprocess.run(
-        [
-            sys.executable,
-            "-m",
-            "uvicorn",
-            "backend.app.main:app",
-            "--reload",
-            "--port",
-            "8000",
-        ],
-        check=True,
-    )
-
+    try:
+        subprocess.run([
+            sys.executable, "-m", "uvicorn", 
+            "backend.app.main:app", 
+            "--reload", "--port", "8000"
+        ])
+    except Exception as e:
+        print(f"Backend failed: {e}")
 
 def run_frontend():
     print("Starting Frontend (Vite)...")
-    frontend_dir = os.path.join(os.getcwd(), "frontend")
-    # Use 'npm.cmd' on Windows
-    npm_cmd = "npm.cmd" if os.name == "nt" else "npm"
-    subprocess.run([npm_cmd, "run", "dev"], cwd=frontend_dir, check=True)
+    frontend_dir = os.path.abspath("frontend")
+    npm = "npm.cmd" if os.name == "nt" else "npm"
 
+    # Auto install if node_modules is missing
+    if not os.path.exists(os.path.join(frontend_dir, "node_modules")):
+        print("Installing frontend dependencies...")
+        subprocess.run([npm, "install"], cwd=frontend_dir, check=True)
+
+    subprocess.run([npm, "run", "dev"], cwd=frontend_dir)
 
 if __name__ == "__main__":
+    # Start backend in background
+    threading.Thread(target=run_backend, daemon=True).start()
+    
+    # Wait for backend to warm up
+    time.sleep(2)
+
     try:
-        # Start backend in a separate thread/process
-        backend_thread = threading.Thread(target=run_backend)
-        backend_thread.daemon = True
-        backend_thread.start()
-
-        # Give backend a moment to start
-        time.sleep(2)
-
-        # Start frontend in the main thread (or separate if needed, but usually fine)
         run_frontend()
-
     except KeyboardInterrupt:
-        print("\nStopping services...")
-        sys.exit(0)
+        print("\nShutting down...")
